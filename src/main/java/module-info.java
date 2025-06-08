@@ -5,4 +5,6 @@ module in.victormartinezjr.buildinganavaid {
 
     opens in.victormartinezjr.buildinganavaid to javafx.fxml;
     exports in.victormartinezjr.buildinganavaid;
+    exports in.victormartinezjr.buildinganavaid.controller;
+    opens in.victormartinezjr.buildinganavaid.controller to javafx.fxml;
 }
