@@ -12,6 +12,7 @@ public class NavAid extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(NavAid.class.getResource("NavAid.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 1000);
+        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
         stage.setTitle("Nav Aid");
         stage.setScene(scene);
         stage.show();
