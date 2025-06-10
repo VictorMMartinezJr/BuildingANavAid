@@ -3,11 +3,14 @@ package in.victormartinezjr.buildinganavaid.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,6 +20,12 @@ public class NavAidController implements Initializable {
 
     @FXML
     private HBox toAndFromContainer;
+
+    @FXML
+    private TextField TF__currentLocation;
+
+    @FXML
+    private TextField TF__destination;
 
     @FXML
     private Button quicklink__bookstore;
@@ -34,31 +43,45 @@ public class NavAidController implements Initializable {
     private Button quiklink__library;
 
     @FXML
-    void quickLinkClicked(ActionEvent event) {
-        Button btnClicked =  (Button) event.getSource();
+    void quickLinkClicked(ActionEvent e) {
+        Button btnClicked =  (Button) e.getSource();
 
         switch (btnClicked.getId()) {
             case "quicklink__bookstore":
                 moveMapToQuickLink(btnClicked.getId());
-                System.out.println("Bookstore clicked");
+                fillDestinationTF(e);
                 break;
             case "quicklink__mainstop":
                 moveMapToQuickLink(btnClicked.getId());
-                System.out.println("Mainstop clicked");
+                fillDestinationTF(e);
                 break;
             case "quicklink__police":
                 moveMapToQuickLink(btnClicked.getId());
-                System.out.println("Police clicked");
+                fillDestinationTF(e);
                 break;
             case "quicklink__studentlounge":
                 moveMapToQuickLink(btnClicked.getId());
-                System.out.println("Studentlounge clicked");
+                fillDestinationTF(e);
                 break;
             case "quiklink__library":
                 moveMapToQuickLink(btnClicked.getId());
-                System.out.println("Library clicked");
+                fillDestinationTF(e);
                 break;
         }
+    }
+
+    void fillDestinationTF(ActionEvent event){
+       Button btnClicked =  (Button) event.getSource();
+       Parent parent = btnClicked.getParent();
+
+       VBox hBox = (VBox) parent;
+
+       for (Node node : hBox.getChildren()) {
+           if (node instanceof Text) {
+               Text destinationText = (Text) node;
+               TF__destination.setText(destinationText.getText());
+           }
+       }
     }
 
     void moveMapToQuickLink(String btnID) {
@@ -67,6 +90,7 @@ public class NavAidController implements Initializable {
 
         toAndFromContainer.setVisible(true);
         toAndFromContainer.setManaged(true);
+
     }
 
     @Override
